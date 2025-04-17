@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e6f7ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dishgame.DishesGame">
+   <children>
+      <Label alignment="CENTER" layoutX="167.0" layoutY="22.0" prefHeight="17.0" prefWidth="241.0" text="Guess the name of dish" />
+      <ImageView fx:id="dishImage" fitHeight="150.0" fitWidth="200.0" layoutX="188.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <RadioButton fx:id="donuts" layoutX="47.0" layoutY="217.0" mnemonicParsing="false" text="SpaghattiesDonuts">
+         <toggleGroup>
+            <ToggleGroup fx:id="toggleGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="macherjhol" layoutX="175.0" layoutY="217.0" mnemonicParsing="false" text="Macher Jhol " toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="ketchupcake" layoutX="300.0" layoutY="217.0" mnemonicParsing="false" text="Ketchup Cake" toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="rburger" layoutX="440.0" layoutY="217.0" mnemonicParsing="false" text="Ramen Burgers" toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="banana" layoutX="47.0" layoutY="267.0" mnemonicParsing="false" text="Banana Curry " toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="burrito" layoutX="175.0" layoutY="267.0" mnemonicParsing="false" text="Burrito " toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="pesarattu" layoutX="300.0" layoutY="267.0" mnemonicParsing="false" text="Pesarattu" toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="kozhukattai" layoutX="440.0" layoutY="267.0" mnemonicParsing="false" text="Kozhukattai " toggleGroup="$toggleGroup" />
+      <Button layoutX="551.0" layoutY="361.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <Button layoutX="262.0" layoutY="317.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="78.0" text="Restart">
+         <font>
+            <Font name="Magneto Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
