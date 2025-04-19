@@ -24,7 +24,7 @@
       <RadioButton fx:id="pesarattu" layoutX="300.0" layoutY="267.0" mnemonicParsing="false" text="Pesarattu" toggleGroup="$toggleGroup" />
       <RadioButton fx:id="kozhukattai" layoutX="440.0" layoutY="267.0" mnemonicParsing="false" text="Kozhukattai " toggleGroup="$toggleGroup" />
       <Button layoutX="551.0" layoutY="361.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
-      <Button layoutX="262.0" layoutY="317.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="78.0" text="Restart">
+      <Button fx:id="restart" layoutX="262.0" layoutY="317.0" mnemonicParsing="false" onAction="#restart" prefHeight="50.0" prefWidth="78.0" text="Restart">
          <font>
             <Font name="Magneto Bold" size="14.0" />
          </font>
