@@ -2,39 +2,44 @@ package com.example.dishgame;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import java.util.Random;
+import javafx.scene.layout.GridPane;
+
+import java.io.File;
+import java.util.*;
 
 public class DishesGame {
+    @FXML
+    public GridPane gridPane;
     @FXML
     Stage primaryStage;
 
     private int randomNum;
+    private File[] AllImage;
+    private File[] WrongOpt;
 
-    public void genRandom() {
-        Random random = new Random();
-        randomNum = random.nextInt(8);
-    }
+    @FXML
+    private javafx.scene.control.ToggleGroup toggleGroup;
+    private static final String imageDir = "C:\\Users\\hp\\IdeaProjects\\DishGame\\src\\main\\resources\\com\\example\\dishgame\\Images";
+    List<RadioButton> options = new ArrayList<>();
 
     @FXML
     public void initialize() {
+        toggleGroup = new ToggleGroup();
+        File dir = new File(imageDir);
+        if (dir.isDirectory()) {
+            AllImage = dir.listFiles((d, name) -> {
+                String lower = name.toLowerCase();
+                return lower.endsWith(".png") || lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".gif");
+            });
+        }
         genRandom();
-        System.out.println("randomNum:" + randomNum);
         setImage();
-        donuts.setUserData(0);
-        macherjhol.setUserData(1);
-        ketchupcake.setUserData(2);
-        rburger.setUserData(3);
-        banana.setUserData(4);
-        burrito.setUserData(5);
-        pesarattu.setUserData(6);
-        kozhukattai.setUserData(7);
+        wrongOpts();
+        setradiobutton();
         toggleGroup.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
             if (newVal != null) {
                 changeColor();
@@ -42,43 +47,71 @@ public class DishesGame {
         });
     }
 
-    @FXML
-    ImageView dishImage;
-
-    private final String[] imgPath = {
-            "spaghattiesDonuts.jpg",
-            "MacherJhol.jpg",
-            "KetchupCake.jpg",
-            "RamenBurger.jpg",
-            "bananaCurry.jpg",
-            "burrito.jpg",
-            "pesarattu.jpg",
-            "kozhukattai.jpg"
-    };
-
-    public void setImage() {
-        Image image = new Image(getClass().getResourceAsStream(imgPath[randomNum]));
-        dishImage.setImage(image);
+    public void genRandom() {
+        Random random = new Random();
+        randomNum = random.nextInt(AllImage.length);
+        System.out.println("randomNum:" + randomNum);
     }
 
     @FXML
-    private RadioButton donuts, macherjhol, ketchupcake, rburger, banana, burrito, pesarattu, kozhukattai;
-    @FXML
-    private javafx.scene.control.ToggleGroup toggleGroup;
+    ImageView dishImage;
+
+    public void setImage() {
+        if (AllImage != null) {
+            File imgFile = AllImage[randomNum];
+            imgFile.getName();
+            Image image = new Image(imgFile.toURI().toString());
+            dishImage.setImage(image);
+        }
+        String imageName = AllImage[randomNum].getName();
+        String imgWOext = imageName.substring(0, imageName.lastIndexOf('.'));
+        RadioButton option = new RadioButton(imgWOext);
+        options.add(option);
+        option.setUserData("correct");
+        option.setToggleGroup(toggleGroup);
+    }
+
+    public void wrongOpts() {
+        File WrongDir = new File(imageDir);
+        WrongOpt = WrongDir.listFiles();
+        List<File> fileList = new ArrayList<>(Arrays.asList(WrongOpt));
+        fileList.remove(AllImage[randomNum]);
+        WrongOpt = fileList.toArray(new File[0]);
+        int i;
+        for (i = 0; i < 7; i++) {
+            String wrImageName = WrongOpt[i].getName();
+            String imgWOext = wrImageName.substring(0, wrImageName.lastIndexOf('.'));
+            RadioButton wrOption = new RadioButton(imgWOext);
+            options.add(wrOption);
+            wrOption.setUserData("wrong");
+            wrOption.setToggleGroup(toggleGroup);
+        }
+    }
+
+    public void setradiobutton() {
+        Collections.shuffle(options);
+        int k = 0;
+        for (int p = 0; p < 2; p++) {
+            for (int q = 0; q < 4; q++) {
+                gridPane.add(options.get(k), q, p);
+                k++;
+            }
+        }
+    }
 
     public void changeColor() {
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
 
         if (selectedRadioButton == null) {
             System.out.println("No radio button selected.");
-            return; // Avoid NPE
+            return;
         }
 
         for (var toggle : toggleGroup.getToggles()) {
             ((RadioButton) toggle).setStyle("");
         }
 
-        if (randomNum == (int) selectedRadioButton.getUserData()) {
+        if ("correct".equals(selectedRadioButton.getUserData())) {
             System.out.println("Right");
             selectedRadioButton.setStyle(
                     "-fx-background-color: #00ff00; " + "-fx-border-color: #00ff00; " + "-fx-text-fill: black;"
@@ -97,9 +130,13 @@ public class DishesGame {
         for (var toggle : toggleGroup.getToggles()) {
             ((RadioButton) toggle).setStyle("");
         }
+        gridPane.getChildren().clear();
+        options.clear();
         toggleGroup.selectToggle(null);
         genRandom();
         setImage();
+        wrongOpts();
+        setradiobutton();
     }
 
     ButtonType yesButton = new ButtonType("YES", ButtonBar.ButtonData.YES);

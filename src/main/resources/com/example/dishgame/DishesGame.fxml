@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ToggleGroup?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e6f7ff;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dishgame.DishesGame">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e6f7ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dishgame.DishesGame">
    <children>
       <Label alignment="CENTER" layoutY="22.0" prefHeight="21.0" prefWidth="600.0" text="Guess the name of dish" underline="true">
          <font>
             <Font name="Cambria Italic" size="25.0" />
          </font></Label>
-      <ImageView fx:id="dishImage" fitHeight="150.0" fitWidth="200.0" layoutX="188.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
-      <RadioButton fx:id="donuts" layoutX="47.0" layoutY="217.0" mnemonicParsing="false" text="SpaghattiesDonuts">
-         <toggleGroup>
-            <ToggleGroup fx:id="toggleGroup" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="macherjhol" layoutX="175.0" layoutY="217.0" mnemonicParsing="false" text="Macher Jhol " toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ketchupcake" layoutX="300.0" layoutY="217.0" mnemonicParsing="false" text="Ketchup Cake" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="rburger" layoutX="440.0" layoutY="217.0" mnemonicParsing="false" text="Ramen Burgers" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="banana" layoutX="47.0" layoutY="267.0" mnemonicParsing="false" text="Banana Curry " toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="burrito" layoutX="175.0" layoutY="267.0" mnemonicParsing="false" text="Burrito " toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="pesarattu" layoutX="300.0" layoutY="267.0" mnemonicParsing="false" text="Pesarattu" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="kozhukattai" layoutX="440.0" layoutY="267.0" mnemonicParsing="false" text="Kozhukattai " toggleGroup="$toggleGroup" />
+      <ImageView fx:id="dishImage" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="551.0" layoutY="361.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <Button fx:id="restart" layoutX="255.0" layoutY="317.0" mnemonicParsing="false" onAction="#restart" prefHeight="50.0" prefWidth="102.0" text="AGAIN" textFill="#00b03f">
          <font>
             <Font name="Book Antiqua" size="21.0" />
          </font>
       </Button>
+      <GridPane fx:id="gridPane" layoutX="46.0" layoutY="236.0" prefHeight="68.0" prefWidth="513.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
    </children>
 </AnchorPane>
