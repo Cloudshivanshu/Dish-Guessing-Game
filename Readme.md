@@ -1,0 +1,5 @@
+![This is loading Scene](images/LoadingScene.png)
+![This is how game looks](images/GameLook.png)
+![This is how correct option looks](images/CorrectOption.png)
+![This is how wrong option looks](images/WrongOption.png)
+![This is how exit button looks](images/ExitButton.png)
